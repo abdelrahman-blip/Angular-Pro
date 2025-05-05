@@ -1,0 +1,15 @@
+<app-header/>
+<main>
+    <ul id="users">
+        @for(user of users; track user.id){
+            <li>
+                <app-user [IsActive]="DynamicId == user.id" [user]="user" (Selected)="OnSelectedUser($event)"/>
+            </li>
+        }
+    </ul>
+    @if (SelectedUser) {
+        <app-tasks [UserId]="SelectedUser.id"  [Username]="SelectedUser.name" />
+    }@else {
+        <p id="fallback">Please choose a user to show his task</p>
+    }
+</main>
